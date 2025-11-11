@@ -1,26 +1,49 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Esqueceu sua senha?</title>
+
+    <link href="{{ asset('assets/admin/css/tabler.css') }}" rel="stylesheet" />
+
+    <style>
+        @import url("https://rsms.me/inter/inter.css");
+    </style>
+</head>
+
+<body>
+    <script src="{{ asset('assets/admin/js/tabler-theme.min.js') }}"></script>
+    <div class="page page-center">
+        <div class="container container-tight py-4">
+            <div class="card card-md">
+                <div class="card-body">
+                    <p class="text-center mb-4">
+                        Esqueceu sua senha? Sem problemas. Apenas nos informe seu endereço
+                        de e-mail e enviaremos um link de redefinição de senha que permitirá que você escolha uma nova.
+                    </p>
+                    <x-auth-session-status class="mb-4" :status="session('status')" />
+                    <form action="{{ route('admin.password.email') }}" method="POST" autocomplete="off" novalidate>
+                        @csrf
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" id="email" :value="old('email')" name="email"
+                                class="form-control" placeholder="voce@email.com" autocomplete="off" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        </div>
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-primary w-100">Enviar link de redefinição de
+                                senha</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</body>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('admin.password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>

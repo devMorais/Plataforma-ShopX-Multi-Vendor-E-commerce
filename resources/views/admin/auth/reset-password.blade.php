@@ -1,40 +1,74 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('admin.password.store') }}">
-        @csrf
+<!doctype html>
+<html lang="pt-br">
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Redefinir senha</title>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required
-                autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <link href="{{ asset('assets/admin/css/tabler.css') }}" rel="stylesheet" />
+
+    <style>
+        @import url("https://rsms.me/inter/inter.css");
+    </style>
+</head>
+
+<body>
+    <script src="{{ asset('assets/admin/js/tabler-theme.min.js') }}"></script>
+    <div class="page page-center">
+        <div class="container container-tight py-4">
+            <div class="card card-md">
+                <div class="card-body">
+                    <h2 class="h2 text-center mb-4">Redefinir senha</h2>
+                    <x-auth-session-status class="mb-4" :status="session('status')" />
+                    <form action="{{ route('admin.password.store') }}" method="POST" autocomplete="off" novalidate>
+                        @csrf
+
+                        <!-- Password Reset Token -->
+                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" id="email" value="{{ old('email', $request->email) }}"
+                                name="email" class="form-control" placeholder="voce@email.com" autocomplete="off" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-2">
+                            <label for="password" class="form-label">
+                                Senha
+                            </label>
+                            <div class="input-group input-group-flat">
+                                <input id="password" type="password" name="password" class="form-control"
+                                    placeholder="Senha" autocomplete="off" />
+                            </div>
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        </div>
+
+
+                        <!-- Confirm Password -->
+                        <div class="mb-2">
+                            <label for="password" class="form-label">
+                                Confirmar senha
+                            </label>
+                            <div class="input-group input-group-flat">
+                                <input id="password_confirmation" type="password" name="password_confirmation"
+                                    class="form-control" placeholder="Confirmar senha" autocomplete="off" />
+                            </div>
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                        </div>
+
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-primary w-100">Redefinir senha</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+    </div>
+</body>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>
