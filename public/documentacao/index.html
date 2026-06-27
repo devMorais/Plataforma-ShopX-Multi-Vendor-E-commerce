@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopX — Documentação Completa</title>
+<meta name="description" content="Manual completo do ShopX: como usar o painel de administração, a área do vendedor e a loja, de ponta a ponta.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== TOPO ===================== -->
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  <div class="logo"><span class="dot">S</span> ShopX <span style="color:#94a3b8;font-weight:500;font-size:14px">· Documentação</span></div>
+  <div class="search-wrap">
+    <span class="ico">🔎</span>
+    <input type="text" id="search" placeholder="Buscar no manual… (ex.: cupom, frete, saque)">
+  </div>
+  <div class="url">🌐 <a href="https://shopx.devmorais.com.br" target="_blank">shopx.devmorais.com.br</a></div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+
+  <!-- ===================== MENU LATERAL ===================== -->
+  <nav class="sidebar" id="sidebar">
+
+    <div class="nav-group">
+      <div class="nav-title">Começar <span class="arrow">▾</span></div>
+      <div class="nav-links">
+        <a href="#visao-geral">O que é o ShopX</a>
+        <a href="#areas">As 3 áreas do sistema</a>
+        <a href="#primeiros-passos">Primeiros passos &amp; logins</a>
+        <a href="#glossario">Glossário rápido</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-title">Painel Admin <span class="arrow">▾</span></div>
+      <div class="nav-links">
+        <a href="#admin-dashboard">Dashboard</a>
+        <a href="#admin-catalogo">Categorias, Marcas e Tags</a>
+        <a href="#admin-produtos">Produtos</a>
+        <a href="#admin-pedidos">Pedidos</a>
+        <a href="#admin-cupons">Cupons</a>
+        <a href="#admin-frete">Regras de frete</a>
+        <a href="#admin-pagamentos">Formas de pagamento</a>
+        <a href="#admin-vendedores">Vendedores e KYC</a>
+        <a href="#admin-comissoes">Comissões e saques</a>
+        <a href="#admin-aparencia">Aparência da loja</a>
+        <a href="#admin-avaliacoes">Avaliações</a>
+        <a href="#admin-newsletter">Newsletter</a>
+        <a href="#admin-contato">Contato e mensagens</a>
+        <a href="#admin-paginas">Páginas personalizadas</a>
+        <a href="#admin-funcoes">Funções e permissões</a>
+        <a href="#admin-config">Configurações gerais</a>
+        <a href="#admin-limpar">Limpar dados ⚠️</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-title">Vendedor <span class="arrow">▾</span></div>
+      <div class="nav-links">
+        <a href="#vend-tornar">Tornar-se vendedor</a>
+        <a href="#vend-dashboard">Dashboard do vendedor</a>
+        <a href="#vend-loja">Perfil da loja</a>
+        <a href="#vend-produtos">Cadastrar produtos</a>
+        <a href="#vend-pedidos">Gerenciar pedidos</a>
+        <a href="#vend-saques">Receber pagamentos (saques)</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-title">Loja (Cliente) <span class="arrow">▾</span></div>
+      <div class="nav-links">
+        <a href="#cli-navegar">Navegar e buscar</a>
+        <a href="#cli-produto">Página do produto</a>
+        <a href="#cli-carrinho">Carrinho e cupom</a>
+        <a href="#cli-checkout">Checkout</a>
+        <a href="#cli-pagamento">Pagamento</a>
+        <a href="#cli-conta">Minha conta</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-title">Operação <span class="arrow">▾</span></div>
+      <div class="nav-links">
+        <a href="#fluxo-completo">Fluxo completo (exemplo)</a>
+        <a href="#deploy">Atualizar o site no ar</a>
+        <a href="#backup">Backup do banco</a>
+        <a href="#faq">Dúvidas frequentes</a>
+      </div>
+    </div>
+
+    <p class="no-results" id="noResults">Nada encontrado 🤷</p>
+  </nav>
+
+  <!-- ===================== CONTEÚDO ===================== -->
+  <main class="content">
+
+    <div class="hero">
+      <h1>Manual do ShopX</h1>
+      <p>Guia completo, de ponta a ponta, para operar a sua plataforma de marketplace multi-vendedor: administração, lojas parceiras e experiência de compra.</p>
+    </div>
+
+    <!-- ============ VISÃO GERAL ============ -->
+    <section id="visao-geral">
+      <h1>O que é o ShopX</h1>
+      <p class="lead">O ShopX é uma plataforma de <strong>e-commerce multi-vendedor</strong> (marketplace). Vários lojistas podem vender no mesmo site, e o administrador controla tudo, cobrando uma comissão sobre cada venda — como funciona a Amazon, o Mercado Livre ou a Shopee.</p>
+
+      <div class="cards">
+        <div class="card"><div class="ci">🛍️</div><h4>Loja online</h4><p>Catálogo de produtos, carrinho, cupons, checkout e pagamento.</p></div>
+        <div class="card"><div class="ci">🏪</div><h4>Multi-vendedor</h4><p>Cada vendedor tem sua loja, seus produtos e seus pedidos.</p></div>
+        <div class="card"><div class="ci">💳</div><h4>Pagamentos</h4><p>PayPal, Stripe e Razorpay integrados e prontos para uso.</p></div>
+        <div class="card"><div class="ci">📊</div><h4>Painel completo</h4><p>Controle de produtos, pedidos, comissões, saques e aparência.</p></div>
+      </div>
+
+      <div class="box info"><span class="bi">ℹ️</span><div class="bc">
+        <div class="bt">Tecnologia</div>
+        <p>Feito em <strong>Laravel 12</strong> (PHP) com banco de dados <strong>MariaDB/MySQL</strong>. Você não precisa entender de programação para <em>operar</em> o sistema — este manual cobre o uso pelo navegador.</p>
+      </div></div>
+    </section>
+
+    <!-- ============ ÁREAS ============ -->
+    <section id="areas">
+      <h2>As 3 áreas do sistema</h2>
+      <p>O ShopX tem três "portas de entrada" diferentes, cada uma para um tipo de usuário:</p>
+      <table>
+        <thead><tr><th>Área</th><th>Quem usa</th><th>Endereço de acesso</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge admin">Admin</span></td><td>Você, dono da plataforma</td><td><code>/admin/login</code></td></tr>
+          <tr><td><span class="badge vendedor">Vendedor</span></td><td>Lojistas parceiros</td><td><code>/login</code> → painel <code>/vendor/dashboard</code></td></tr>
+          <tr><td><span class="badge cliente">Cliente</span></td><td>Quem compra</td><td><code>/</code> (a loja) e <code>/login</code></td></tr>
+        </tbody>
+      </table>
+      <div class="box tip"><span class="bi">💡</span><div class="bc">
+        <div class="bt">Dica de identificação</div>
+        <p>Ao longo deste manual, cada assunto traz uma etiqueta colorida indicando a qual área pertence: <span class="badge admin">Admin</span> <span class="badge vendedor">Vendedor</span> <span class="badge cliente">Cliente</span>.</p>
+      </div></div>
+    </section>
+
+    <!-- ============ PRIMEIROS PASSOS ============ -->
+    <section id="primeiros-passos">
+      <h2>Primeiros passos &amp; logins</h2>
+      <p>Os acessos de demonstração já criados no sistema são:</p>
+      <table>
+        <thead><tr><th>Tipo</th><th>Endereço</th><th>E-mail</th><th>Senha</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge admin">Admin</span></td><td><code>/admin/login</code></td><td>admin@gmail.com</td><td><code>1234</code></td></tr>
+          <tr><td><span class="badge cliente">Cliente</span></td><td><code>/login</code></td><td>user@gmail.com</td><td><code>1234</code></td></tr>
+          <tr><td><span class="badge vendedor">Vendedor</span></td><td><code>/login</code></td><td>vendor@gmail.com</td><td><code>1234</code></td></tr>
+        </tbody>
+      </table>
+      <div class="box danger"><span class="bi">🔒</span><div class="bc">
+        <div class="bt">Antes de ir ao ar de verdade</div>
+        <p>Troque <strong>todas</strong> as senhas <code>1234</code>. No admin: <em>Perfil → alterar senha</em>. Use senhas fortes (letras, números e símbolos).</p>
+      </div></div>
+      <h3>Como entrar no painel admin</h3>
+      <ol class="steps">
+        <li><strong>Acesse o endereço</strong> <code>https://shopx.devmorais.com.br/admin/login</code></li>
+        <li><strong>Informe e-mail e senha</strong> do administrador.</li>
+        <li><strong>Clique em Entrar</strong> — você cai direto no Dashboard.</li>
+      </ol>
+    </section>
+
+    <!-- ============ GLOSSÁRIO ============ -->
+    <section id="glossario">
+      <h2>Glossário rápido</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>SKU</strong></td><td>Código único de identificação de um produto (ex.: <code>CAM-AZUL-M</code>).</td></tr>
+          <tr><td><strong>Variação</strong></td><td>Versões de um mesmo produto: tamanho P/M/G, cor, etc.</td></tr>
+          <tr><td><strong>Atributo</strong></td><td>Característica que gera variações (ex.: "Cor", "Tamanho").</td></tr>
+          <tr><td><strong>KYC</strong></td><td>"Conheça seu cliente" — verificação de identidade do vendedor (documento).</td></tr>
+          <tr><td><strong>Comissão</strong></td><td>Percentual que a plataforma retém sobre cada venda do vendedor.</td></tr>
+          <tr><td><strong>Saque (withdraw)</strong></td><td>Pedido do vendedor para receber o dinheiro acumulado das vendas.</td></tr>
+          <tr><td><strong>Produto digital</strong></td><td>Produto entregue por download (e-book, arquivo) em vez de envio físico.</td></tr>
+          <tr><td><strong>Flash sale</strong></td><td>Promoção relâmpago por tempo limitado.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- ==================== PAINEL ADMIN ==================== -->
+    <!-- ===================================================== -->
+
+    <section id="admin-dashboard">
+      <h1><span class="badge admin">Admin</span> Dashboard</h1>
+      <p class="lead">É a tela inicial do painel. Mostra o resumo de saúde do negócio.</p>
+      <p>No Dashboard você acompanha de relance:</p>
+      <ul>
+        <li><strong>Faturamento</strong> e total de vendas no período;</li>
+        <li><strong>Quantidade de pedidos</strong> (e seus status);</li>
+        <li><strong>Número de produtos, vendedores e clientes</strong> cadastrados;</li>
+        <li><strong>Gráficos</strong> de evolução de vendas e pedidos recentes.</li>
+      </ul>
+      <div class="box tip"><span class="bi">💡</span><div class="bc"><p>Use o Dashboard como ponto de partida diário: se um número parecer estranho (ex.: muitos pedidos "pendentes"), clique para investigar na seção correspondente.</p></div></div>
+    </section>
+
+    <section id="admin-catalogo">
+      <h2><span class="badge admin">Admin</span> Categorias, Marcas e Tags</h2>
+      <p>São as "gavetas" que organizam o catálogo. Configure-as <strong>antes</strong> de cadastrar produtos.</p>
+
+      <h3>Categorias</h3>
+      <p>Menu <span class="badge path">Categorias</span>. As categorias podem ter <strong>subcategorias</strong> (estrutura em árvore: Ex.: <em>Eletrônicos → Celulares → Smartphones</em>).</p>
+      <ol class="steps">
+        <li><strong>Clique em "Nova categoria"</strong> e preencha o nome.</li>
+        <li><strong>Defina a categoria-pai</strong> (opcional) para criar uma subcategoria.</li>
+        <li><strong>Envie uma imagem/ícone</strong> e marque se ela é <em>destaque</em> (aparece na home).</li>
+        <li><strong>Salve.</strong> Você pode arrastar para <em>reordenar</em> a posição das categorias.</li>
+      </ol>
+
+      <h3>Marcas</h3>
+      <p>Menu <span class="badge path">Marcas</span>. Cadastre fabricantes/marcas (Nike, Samsung…) com nome e logotipo. Cada produto é vinculado a uma marca.</p>
+
+      <h3>Tags</h3>
+      <p>Menu <span class="badge path">Tags</span>. São etiquetas livres (ex.: "promoção", "novidade", "verão") usadas para agrupar e filtrar produtos de forma flexível.</p>
+
+      <div class="box info"><span class="bi">ℹ️</span><div class="bc"><p>Ordem recomendada de configuração: <strong>1)</strong> Categorias → <strong>2)</strong> Marcas → <strong>3)</strong> Tags → <strong>4)</strong> Produtos.</p></div></div>
+    </section>
+
+    <section id="admin-produtos">
+      <h2><span class="badge admin">Admin</span> Produtos</h2>
+      <p>Menu <span class="badge path">Produtos</span>. Aqui o administrador cadastra e gerencia produtos (os vendedores também cadastram os seus — veja a área Vendedor).</p>
+
+      <h3>Tipos de produto</h3>
+      <table>
+        <thead><tr><th>Tipo</th><th>O que é</th><th>Entrega</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Físico</strong></td><td>Mercadoria real (roupa, eletrônico…)</td><td>Frete / envio</td></tr>
+          <tr><td><strong>Digital</strong></td><td>Arquivo (e-book, curso, licença…)</td><td>Download após a compra</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Como cadastrar um produto</h3>
+      <ol class="steps">
+        <li><strong>Clique em "Adicionar produto"</strong> e escolha o tipo (Físico ou Digital).</li>
+        <li><strong>Informações básicas:</strong> nome, marca, categoria(s), tags, descrição curta e descrição completa.</li>
+        <li><strong>Preço:</strong> preço normal e, se quiser, um <em>preço promocional</em> com data de início e fim.</li>
+        <li><strong>Estoque:</strong> ative o controle de estoque e informe a quantidade (SKU para identificar).</li>
+        <li><strong>Imagens:</strong> envie as fotos (a primeira é a principal; arraste para reordenar).</li>
+        <li><strong>Atributos e variações</strong> (opcional): veja abaixo.</li>
+        <li><strong>Status:</strong> <em>ativo</em> para publicar. Salve.</li>
+      </ol>
+
+      <h3>Atributos e variações</h3>
+      <p>Use quando o produto tem versões. Exemplo: uma camiseta com cores e tamanhos.</p>
+      <ol class="steps">
+        <li><strong>Crie os atributos</strong> do produto (ex.: "Cor" com valores Azul/Preto; "Tamanho" com P/M/G).</li>
+        <li><strong>Gere as variações</strong> — o sistema combina os valores (Azul-P, Azul-M, Preto-G…).</li>
+        <li><strong>Defina preço e estoque por variação</strong>, se forem diferentes.</li>
+      </ol>
+
+      <h3>Produto digital</h3>
+      <p>Ao escolher o tipo Digital, você <strong>envia o(s) arquivo(s)</strong> que o cliente vai baixar. Após a compra aprovada, o cliente acessa o download em <em>Minha conta → Produtos comprados</em>.</p>
+
+      <div class="box warn"><span class="bi">⚠️</span><div class="bc"><p>Produtos só aparecem na loja quando estão com status <strong>ativo</strong> e (no caso de vendedores) <strong>aprovados</strong> pelo administrador.</p></div></div>
+    </section>
+
+    <section id="admin-pedidos">
+      <h2><span class="badge admin">Admin</span> Pedidos</h2>
+      <p>Menu <span class="badge path">Pedidos</span>. Lista todas as compras feitas na plataforma.</p>
+      <ol class="steps">
+        <li><strong>Clique num pedido</strong> para ver os detalhes: itens, valores, cliente, endereço, pagamento e comissão.</li>
+        <li><strong>Atualize o status</strong> conforme o pedido avança.</li>
+      </ol>
+      <h3>Status de um pedido</h3>
+      <table>
+        <thead><tr><th>Status</th><th>Significado</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Pendente</strong></td><td>Pedido criado, aguardando processamento/pagamento.</td></tr>
+          <tr><td><strong>Em processamento</strong></td><td>Pagamento confirmado, sendo preparado.</td></tr>
+          <tr><td><strong>Enviado</strong></td><td>Despachado para entrega.</td></tr>
+          <tr><td><strong>Entregue</strong></td><td>Recebido pelo cliente.</td></tr>
+          <tr><td><strong>Cancelado</strong></td><td>Pedido cancelado.</td></tr>
+        </tbody>
+      </table>
+      <p>Há também o <strong>status de pagamento</strong> (pago / não pago), atualizado automaticamente pelo gateway quando o cliente paga.</p>
+    </section>
+
+    <section id="admin-cupons">
+      <h2><span class="badge admin">Admin</span> Cupons</h2>
+      <p>Menu <span class="badge path">Cupons</span>. Crie códigos de desconto para campanhas.</p>
+      <ol class="steps">
+        <li><strong>Novo cupom:</strong> defina o <em>código</em> (ex.: <code>BEMVINDO10</code>).</li>
+        <li><strong>Tipo de desconto:</strong> percentual (ex.: 10%) ou valor fixo (ex.: R$ 20).</li>
+        <li><strong>Regras:</strong> valor mínimo de compra, limite de usos e validade (datas).</li>
+        <li><strong>Salve.</strong> O cliente digita o código no carrinho.</li>
+      </ol>
+      <div class="box tip"><span class="bi">💡</span><div class="bc"><p>Cupons com validade e limite de uso evitam abusos e criam urgência ("só até domingo!").</p></div></div>
+    </section>
+
+    <section id="admin-frete">
+      <h2><span class="badge admin">Admin</span> Regras de frete</h2>
+      <p>Menu <span class="badge path">Regras de envio</span>. Define quanto o cliente paga de frete.</p>
+      <ul>
+        <li>Crie regras por <strong>região</strong>, <strong>valor do pedido</strong> ou <strong>método</strong> (normal/expresso).</li>
+        <li>Configure <strong>frete grátis</strong> acima de determinado valor para incentivar compras maiores.</li>
+      </ul>
+      <p>No checkout, o cliente escolhe o método de envio disponível e o valor é somado ao total.</p>
+    </section>
+
+    <section id="admin-pagamentos">
+      <h2><span class="badge admin">Admin</span> Formas de pagamento</h2>
+      <p>Menu <span class="badge path">Configurações de pagamento</span>. O ShopX já vem com três gateways integrados:</p>
+      <div class="cards">
+        <div class="card"><div class="ci">🅿️</div><h4>PayPal</h4><p>Modo sandbox (teste) ou live (real). Client ID e Secret.</p></div>
+        <div class="card"><div class="ci">💠</div><h4>Stripe</h4><p>Cartões internacionais. Chaves publishable e secret.</p></div>
+        <div class="card"><div class="ci">🇮🇳</div><h4>Razorpay</h4><p>Gateway popular na Índia. Key ID e Secret.</p></div>
+      </div>
+      <ol class="steps">
+        <li><strong>Abra a aba</strong> do gateway desejado (PayPal / Stripe / Razorpay).</li>
+        <li><strong>Cole as chaves</strong> da sua conta no gateway (geradas no painel do PayPal/Stripe/Razorpay).</li>
+        <li><strong>Escolha o modo</strong>: <em>sandbox</em> para testar, <em>live</em> para receber de verdade.</li>
+        <li><strong>Ative</strong> e salve. O gateway passa a aparecer no checkout.</li>
+      </ol>
+      <div class="box warn"><span class="bi">⚠️</span><div class="bc"><p>Comece sempre em <strong>sandbox</strong> e faça uma compra de teste antes de mudar para <strong>live</strong>. Nunca compartilhe suas chaves secretas.</p></div></div>
+    </section>
+
+    <section id="admin-vendedores">
+      <h2><span class="badge admin">Admin</span> Vendedores e KYC</h2>
+      <p>O ShopX é um marketplace — outras pessoas podem vender. Antes de venderem, os vendedores passam por uma <strong>verificação de identidade (KYC)</strong>.</p>
+      <h3>Aprovar/rejeitar um vendedor</h3>
+      <ol class="steps">
+        <li><strong>Menu Solicitações de KYC.</strong> Veja as abas <em>Pendentes</em> e <em>Rejeitadas</em>.</li>
+        <li><strong>Abra a solicitação</strong> e confira os dados e o documento enviado (você pode baixá-lo).</li>
+        <li><strong>Aprove</strong> (o vendedor é liberado para vender) ou <strong>rejeite</strong> (informando o motivo).</li>
+      </ol>
+      <div class="box info"><span class="bi">ℹ️</span><div class="bc"><p>Enquanto o KYC não é aprovado, o vendedor pode acessar o painel, mas seus produtos não são publicados.</p></div></div>
+    </section>
+
+    <section id="admin-comissoes">
+      <h2><span class="badge admin">Admin</span> Comissões e saques</h2>
+      <p>É assim que a plataforma <strong>ganha dinheiro</strong> e que os vendedores <strong>recebem</strong>.</p>
+      <h3>Comissão</h3>
+      <p>Em <span class="badge path">Configurações → Comissão</span>, defina o percentual que a plataforma retém de cada venda (ex.: 15%). A cada pedido pago, o sistema calcula automaticamente: a sua comissão e o valor líquido do vendedor.</p>
+      <h3>Métodos de saque</h3>
+      <p>Menu <span class="badge path">Métodos de saque</span>: defina os meios pelos quais os vendedores podem solicitar o dinheiro (ex.: PIX, transferência bancária, PayPal).</p>
+      <h3>Solicitações de saque</h3>
+      <ol class="steps">
+        <li><strong>O vendedor solicita</strong> um saque do saldo acumulado.</li>
+        <li><strong>Você revisa</strong> em <span class="badge path">Solicitações de saque</span>.</li>
+        <li><strong>Faça o pagamento</strong> pelo método escolhido e marque a solicitação como paga/aprovada.</li>
+      </ol>
+    </section>
+
+    <section id="admin-aparencia">
+      <h2><span class="badge admin">Admin</span> Aparência da loja</h2>
+      <p>Vários menus controlam o visual da página inicial. Aqui está o que cada um faz:</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controla</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Sliders</strong></td><td>O carrossel grande (banner principal) no topo da home.</td></tr>
+          <tr><td><strong>Hero banners</strong></td><td>Os banners menores ao lado do carrossel.</td></tr>
+          <tr><td><strong>Banners (anúncios)</strong></td><td>Banners promocionais espalhados pela home.</td></tr>
+          <tr><td><strong>Categorias populares</strong></td><td>As abas de "Produtos Populares" por categoria.</td></tr>
+          <tr><td><strong>Flash sales</strong></td><td>Promoção relâmpago com contagem regressiva.</td></tr>
+          <tr><td><strong>Seções de produtos</strong></td><td>Blocos de produtos por categoria na home.</td></tr>
+          <tr><td><strong>Nossos diferenciais</strong></td><td>Ícones de benefícios (frete grátis, suporte 24h…).</td></tr>
+          <tr><td><strong>Redes sociais</strong></td><td>Links das redes no rodapé.</td></tr>
+          <tr><td><strong>Offer sliders</strong></td><td>Carrossel de ofertas adicional.</td></tr>
+        </tbody>
+      </table>
+      <div class="box tip"><span class="bi">💡</span><div class="bc"><p>Sempre que mexer na aparência, abra a loja em uma <strong>aba anônima</strong> (Ctrl+Shift+R) para ver as mudanças sem o cache do navegador atrapalhar.</p></div></div>
+    </section>
+
+    <section id="admin-avaliacoes">
+      <h2><span class="badge admin">Admin</span> Avaliações</h2>
+      <p>Menu <span class="badge path">Avaliações</span>. Lista as avaliações (estrelas + comentário) que os clientes deixaram nos produtos. Você pode <strong>excluir</strong> avaliações ofensivas ou falsas.</p>
+    </section>
+
+    <section id="admin-newsletter">
+      <h2><span class="badge admin">Admin</span> Newsletter</h2>
+      <p>Menu <span class="badge path">Inscritos</span>. Mostra os e-mails de quem se cadastrou para receber novidades. Em <strong>Enviar newsletter</strong>, você dispara um comunicado para toda a lista.</p>
+      <div class="box info"><span class="bi">ℹ️</span><div class="bc"><p>O envio de e-mails depende da configuração de e-mail do servidor (SMTP). Para a demonstração, os e-mails ficam apenas registrados em log.</p></div></div>
+    </section>
+
+    <section id="admin-contato">
+      <h2><span class="badge admin">Admin</span> Contato e mensagens</h2>
+      <p>Em <span class="badge path">Mensagens de contato</span> ficam as mensagens enviadas pelo formulário "Fale conosco" da loja. Em <span class="badge path">Configurações de contato</span> você ajusta o texto, telefone, e-mail e endereço exibidos na página de contato.</p>
+    </section>
+
+    <section id="admin-paginas">
+      <h2><span class="badge admin">Admin</span> Páginas personalizadas</h2>
+      <p>Menu <span class="badge path">Páginas personalizadas</span>. Crie páginas de conteúdo como <em>Sobre nós</em>, <em>Política de privacidade</em>, <em>Termos de uso</em> e <em>Trocas e devoluções</em>.</p>
+      <ol class="steps">
+        <li><strong>Nova página:</strong> defina título e conteúdo (editor de texto).</li>
+        <li><strong>Salve.</strong> A página fica acessível em <code>/page/o-titulo-da-pagina</code> e pode ser linkada no rodapé.</li>
+      </ol>
+    </section>
+
+    <section id="admin-funcoes">
+      <h2><span class="badge admin">Admin</span> Funções e permissões</h2>
+      <p>Menus <span class="badge path">Funções</span> e <span class="badge path">Usuários de função</span>. Permitem criar <strong>perfis de acesso</strong> à administração (ex.: um funcionário que só vê pedidos, outro que gerencia produtos).</p>
+      <ol class="steps">
+        <li><strong>Crie uma função</strong> (ex.: "Operador de pedidos").</li>
+        <li><strong>Marque as permissões</strong> que ela pode acessar.</li>
+        <li><strong>Associe usuários</strong> administradores a essa função.</li>
+      </ol>
+      <div class="box tip"><span class="bi">💡</span><div class="bc"><p>O <strong>Super Admin</strong> tem acesso a tudo. Crie funções limitadas para a sua equipe seguindo o princípio do "mínimo acesso necessário".</p></div></div>
+    </section>
+
+    <section id="admin-config">
+      <h2><span class="badge admin">Admin</span> Configurações gerais</h2>
+      <p>Menu <span class="badge path">Configurações</span>, dividido em:</p>
+      <table>
+        <tbody>
+          <tr><td><strong>Gerais</strong></td><td>Nome do site, moeda, símbolo da moeda, descrição.</td></tr>
+          <tr><td><strong>Site</strong></td><td>Telefone, e-mail, endereço, horário, copyright do rodapé.</td></tr>
+          <tr><td><strong>Logo</strong></td><td>Logotipo e favicon (o ícone da aba do navegador).</td></tr>
+          <tr><td><strong>Comissão</strong></td><td>Percentual padrão de comissão da plataforma.</td></tr>
+        </tbody>
+      </table>
+      <div class="box tip"><span class="bi">💡</span><div class="bc"><p>Para a versão brasileira, ajuste a <strong>moeda para BRL</strong> e o símbolo para <strong>R$</strong> em Configurações → Gerais.</p></div></div>
+    </section>
+
+    <section id="admin-limpar">
+      <h2><span class="badge admin">Admin</span> Limpar dados ⚠️</h2>
+      <p>Menu <span class="badge path">Limpar banco de dados</span>. Apaga dados de demonstração para começar do zero.</p>
+      <div class="box danger"><span class="bi">🛑</span><div class="bc">
+        <div class="bt">Ação irreversível</div>
+        <p>Isto <strong>apaga produtos, pedidos e/ou clientes</strong> permanentemente. <strong>Faça um backup do banco antes</strong> (veja a seção "Backup"). Use somente quando for de fato limpar a demonstração para entrar em operação real.</p>
+      </div></div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- ===================== VENDEDOR ====================== -->
+    <!-- ===================================================== -->
+
+    <section id="vend-tornar">
+      <h1><span class="badge vendedor">Vendedor</span> Tornar-se vendedor</h1>
+      <p class="lead">Qualquer cliente pode virar vendedor e abrir uma loja dentro do marketplace.</p>
+      <ol class="steps">
+        <li><strong>Crie uma conta / faça login</strong> como cliente em <code>/login</code>.</li>
+        <li><strong>Solicite virar vendedor</strong> e preencha a <strong>verificação KYC</strong> (<code>/kyc-verification</code>): dados pessoais e documento.</li>
+        <li><strong>Aguarde a aprovação</strong> do administrador.</li>
+        <li><strong>Aprovado!</strong> O painel do vendedor é liberado em <code>/vendor/dashboard</code>.</li>
+      </ol>
+    </section>
+
+    <section id="vend-dashboard">
+      <h2><span class="badge vendedor">Vendedor</span> Dashboard do vendedor</h2>
+      <p>Resumo da loja: <strong>vendas, pedidos recebidos, saldo disponível</strong> para saque e produtos mais vendidos.</p>
+    </section>
+
+    <section id="vend-loja">
+      <h2><span class="badge vendedor">Vendedor</span> Perfil da loja</h2>
+      <p>Menu <span class="badge path">Perfil da loja</span>. O vendedor configura a identidade da sua loja:</p>
+      <ul>
+        <li><strong>Nome da loja</strong>, logotipo e banner;</li>
+        <li><strong>Descrição</strong> curta e completa;</li>
+        <li><strong>Contato</strong>: telefone, e-mail e endereço.</li>
+      </ul>
+      <p>Essa página é o que os clientes veem em <code>/vendors/nome-da-loja</code>.</p>
+    </section>
+
+    <section id="vend-produtos">
+      <h2><span class="badge vendedor">Vendedor</span> Cadastrar produtos</h2>
+      <p>Menu <span class="badge path">Produtos</span> do painel do vendedor. O processo é <strong>igual ao do admin</strong> (veja <a href="#admin-produtos">Produtos</a>): tipo, preço, estoque, imagens, atributos e variações.</p>
+      <div class="box warn"><span class="bi">⚠️</span><div class="bc"><p>Produtos cadastrados por vendedores entram como <strong>"pendente de aprovação"</strong>. Só vão para a loja depois que o administrador aprovar.</p></div></div>
+    </section>
+
+    <section id="vend-pedidos">
+      <h2><span class="badge vendedor">Vendedor</span> Gerenciar pedidos</h2>
+      <p>Menu <span class="badge path">Pedidos</span>. O vendedor vê apenas os pedidos dos <strong>seus</strong> produtos, e atualiza o status (em processamento → enviado → entregue) conforme prepara e despacha.</p>
+    </section>
+
+    <section id="vend-saques">
+      <h2><span class="badge vendedor">Vendedor</span> Receber pagamentos (saques)</h2>
+      <ol class="steps">
+        <li><strong>Cadastre um método de saque</strong> (PIX, conta bancária…) em <span class="badge path">Métodos de saque</span>.</li>
+        <li><strong>Solicite o saque</strong> do saldo disponível em <span class="badge path">Solicitações de saque</span>.</li>
+        <li><strong>Acompanhe o status</strong> — o administrador processa e paga.</li>
+      </ol>
+      <div class="box info"><span class="bi">ℹ️</span><div class="bc"><p>O saldo disponível já vem <strong>descontada a comissão</strong> da plataforma.</p></div></div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- ====================== CLIENTE ====================== -->
+    <!-- ===================================================== -->
+
+    <section id="cli-navegar">
+      <h1><span class="badge cliente">Cliente</span> Navegar e buscar</h1>
+      <p class="lead">A experiência de compra na loja, passo a passo.</p>
+      <ul>
+        <li><strong>Busca:</strong> a barra no topo procura por nome de produto.</li>
+        <li><strong>Categorias:</strong> o menu "Categorias em Alta" e a navegação levam às listagens.</li>
+        <li><strong>Filtros</strong> (em <code>/products</code>): por categoria, marca, faixa de preço e tags.</li>
+        <li><strong>Vendedores:</strong> em <code>/vendors</code> dá para navegar pelas lojas.</li>
+        <li><strong>Ofertas:</strong> a página <code>/flash-sales</code> mostra as promoções relâmpago.</li>
+      </ul>
+    </section>
+
+    <section id="cli-produto">
+      <h2><span class="badge cliente">Cliente</span> Página do produto</h2>
+      <p>Ao clicar num produto, o cliente vê: galeria de fotos, preço (e preço promocional, se houver), descrição, avaliações, vendedor e — quando existem — as <strong>variações</strong> (cor, tamanho).</p>
+      <ol class="steps">
+        <li><strong>Escolhe a variação</strong> e a quantidade.</li>
+        <li><strong>Adiciona ao carrinho</strong> ou à <strong>lista de desejos</strong> (wishlist).</li>
+      </ol>
+    </section>
+
+    <section id="cli-carrinho">
+      <h2><span class="badge cliente">Cliente</span> Carrinho e cupom</h2>
+      <ol class="steps">
+        <li><strong>Abre o carrinho</strong> (ícone no topo).</li>
+        <li><strong>Ajusta as quantidades</strong> ou remove itens.</li>
+        <li><strong>Aplica um cupom</strong> de desconto, se tiver o código.</li>
+        <li><strong>Segue para o checkout.</strong></li>
+      </ol>
+    </section>
+
+    <section id="cli-checkout">
+      <h2><span class="badge cliente">Cliente</span> Checkout</h2>
+      <ol class="steps">
+        <li><strong>Endereço de entrega:</strong> escolhe um endereço salvo ou cadastra um novo.</li>
+        <li><strong>Método de envio:</strong> seleciona o frete disponível (o valor entra no total).</li>
+        <li><strong>Dados de cobrança:</strong> confirma as informações de faturamento.</li>
+        <li><strong>Revisa o resumo</strong> (itens, frete, desconto, total) e avança para o pagamento.</li>
+      </ol>
+    </section>
+
+    <section id="cli-pagamento">
+      <h2><span class="badge cliente">Cliente</span> Pagamento</h2>
+      <p>O cliente escolhe um dos gateways ativos (<strong>PayPal</strong>, <strong>Stripe</strong> ou <strong>Razorpay</strong>), é levado ao ambiente seguro do gateway e conclui o pagamento.</p>
+      <ul>
+        <li><strong>Pagamento aprovado:</strong> o pedido é confirmado e o cliente volta à página de sucesso.</li>
+        <li><strong>Pagamento cancelado:</strong> o pedido fica pendente e o cliente pode tentar de novo.</li>
+      </ul>
+      <div class="box info"><span class="bi">ℹ️</span><div class="bc"><p>Em produtos digitais, assim que o pagamento é aprovado, o download é liberado em <em>Minha conta → Produtos comprados</em>.</p></div></div>
+    </section>
+
+    <section id="cli-conta">
+      <h2><span class="badge cliente">Cliente</span> Minha conta</h2>
+      <p>Área logada do cliente (<code>/dashboard</code>):</p>
+      <table>
+        <tbody>
+          <tr><td><strong>Meus pedidos</strong></td><td>Histórico e detalhes de cada compra.</td></tr>
+          <tr><td><strong>Rastrear pedido</strong></td><td>Acompanha o status da entrega.</td></tr>
+          <tr><td><strong>Produtos comprados</strong></td><td>Downloads dos produtos digitais.</td></tr>
+          <tr><td><strong>Lista de desejos</strong></td><td>Produtos salvos para depois.</td></tr>
+          <tr><td><strong>Avaliações</strong></td><td>Avalia produtos que comprou.</td></tr>
+          <tr><td><strong>Endereços</strong></td><td>Gerencia endereços de entrega.</td></tr>
+          <tr><td><strong>Perfil</strong></td><td>Dados pessoais e troca de senha.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- ====================== OPERAÇÃO ===================== -->
+    <!-- ===================================================== -->
+
+    <section id="fluxo-completo">
+      <h1>Fluxo completo (exemplo)</h1>
+      <p class="lead">Juntando tudo: do cadastro do produto até o vendedor receber o dinheiro.</p>
+      <ol class="steps">
+        <li><strong><span class="badge admin">Admin</span> prepara o catálogo:</strong> cria categorias, marcas e define a comissão (ex.: 15%).</li>
+        <li><strong><span class="badge vendedor">Vendedor</span> se cadastra:</strong> abre conta, envia o KYC e configura a loja.</li>
+        <li><strong><span class="badge admin">Admin</span> aprova</strong> o KYC do vendedor.</li>
+        <li><strong><span class="badge vendedor">Vendedor</span> cadastra um produto</strong> (preço R$ 100, com fotos).</li>
+        <li><strong><span class="badge admin">Admin</span> aprova</strong> o produto → ele aparece na loja.</li>
+        <li><strong><span class="badge cliente">Cliente</span> compra:</strong> adiciona ao carrinho, aplica cupom, faz checkout e paga.</li>
+        <li><strong>Sistema</strong> registra o pedido como <em>pago</em> e calcula: R$ 15 de comissão + R$ 85 para o vendedor.</li>
+        <li><strong><span class="badge vendedor">Vendedor</span> envia</strong> o produto e marca como <em>enviado/entregue</em>.</li>
+        <li><strong><span class="badge vendedor">Vendedor</span> solicita o saque</strong> dos R$ 85.</li>
+        <li><strong><span class="badge admin">Admin</span> paga</strong> o saque e marca como concluído. ✅</li>
+      </ol>
+    </section>
+
+    <section id="deploy">
+      <h2>Atualizar o site no ar</h2>
+      <p>O site fica na Hostinger e o código no GitHub. Para publicar uma mudança feita no seu computador:</p>
+      <h3>1. No seu computador</h3>
+      <pre><code><span class="cmt"># envia suas mudanças para o GitHub</span>
+git add .
+git commit -m "Descricao do que mudou"
+git push origin main</code></pre>
+      <h3>2. No servidor (Hostinger, via SSH)</h3>
+      <pre><code>ssh -p 65002 u846585591@147.93.39.159
+cd ~/domains/devmorais.com.br/public_html/shopx
+git pull origin main
+php artisan migrate --force
+php artisan optimize:clear
+php artisan config:cache &amp;&amp; php artisan route:cache &amp;&amp; php artisan view:cache</code></pre>
+      <div class="box tip"><span class="bi">💡</span><div class="bc"><p>Se mudou o visual (CSS/JS), rode <code>npm run build</code> no seu PC antes do <code>git push</code> para enviar os arquivos compilados.</p></div></div>
+    </section>
+
+    <section id="backup">
+      <h2>Backup do banco de dados</h2>
+      <p>Antes de qualquer ação arriscada (limpar dados, grandes mudanças), salve uma cópia do banco.</p>
+      <h3>Opção A — pelo painel da Hostinger</h3>
+      <p>hPanel → <em>Bancos de Dados → phpMyAdmin</em> → selecione o banco → aba <strong>Exportar</strong> → método rápido → <strong>Executar</strong>. Um arquivo <code>.sql</code> é baixado.</p>
+      <h3>Opção B — pelo SSH</h3>
+      <pre><code>cd ~/domains/devmorais.com.br/public_html/shopx
+MYSQL_PWD='SUA_SENHA' mysqldump -u u846585591_shopx_u u846585591_shopx_u &gt; backup_$(date +%F).sql</code></pre>
+      <div class="box info"><span class="bi">ℹ️</span><div class="bc"><p>Guarde os backups em local seguro (Google Drive, etc.). Faça backups com regularidade quando o site estiver em operação real.</p></div></div>
+    </section>
+
+    <section id="faq">
+      <h2>Dúvidas frequentes</h2>
+
+      <h3>As imagens não aparecem / mudei algo e não atualizou</h3>
+      <p>Quase sempre é o <strong>cache do navegador</strong>. Faça um <em>hard refresh</em> com <code>Ctrl + Shift + R</code> ou abra em aba anônima.</p>
+
+      <h3>Um produto não aparece na loja</h3>
+      <p>Verifique se ele está com status <strong>ativo</strong> e, se for de um vendedor, se está <strong>aprovado</strong>. Confira também se há estoque.</p>
+
+      <h3>O pagamento não funciona</h3>
+      <p>Confirme em <em>Configurações de pagamento</em> se o gateway está <strong>ativo</strong> e com as <strong>chaves corretas</strong>. Teste primeiro em modo <em>sandbox</em>.</p>
+
+      <h3>O vendedor não consegue vender</h3>
+      <p>O <strong>KYC</strong> dele provavelmente ainda não foi aprovado. Verifique em <em>Solicitações de KYC</em>.</p>
+
+      <h3>Esqueci a senha do admin</h3>
+      <p>Use <em>"Esqueci a senha"</em> na tela de login (precisa de e-mail configurado) ou peça a quem administra o servidor para redefinir via comando.</p>
+
+      <h3>Como deixar em Português e Real (R$)?</h3>
+      <p>A interface já está em PT-BR. Para a moeda, vá em <em>Configurações → Gerais</em> e troque a moeda para <strong>BRL</strong> e o símbolo para <strong>R$</strong>.</p>
+
+      <div class="box tip" style="margin-top:30px"><span class="bi">🎯</span><div class="bc">
+        <div class="bt">Resumo de ouro</div>
+        <p><strong>Admin</strong> controla a plataforma e ganha comissão · <strong>Vendedores</strong> cadastram produtos e recebem por saque · <strong>Clientes</strong> compram. Configure nesta ordem: categorias → comissão → pagamentos → aprovação de vendedores → produtos → divulgação.</p>
+      </div></div>
+    </section>
+
+    <footer style="margin-top:60px;padding-top:24px;border-top:1px solid var(--borda);color:#94a3b8;font-size:14px">
+      <p>📘 Documentação do ShopX · Plataforma de marketplace multi-vendedor · Feita para a equipe operar o sistema de ponta a ponta.</p>
+    </footer>
+
+  </main>
+</div>
+
+<button class="back-top" id="backTop" aria-label="Voltar ao topo">↑</button>
+<script src="script.js"></script>
+</body>
+</html>
