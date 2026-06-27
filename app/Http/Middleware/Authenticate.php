@@ -43,7 +43,7 @@ class Authenticate implements AuthenticatesRequests
      */
     public static function using($guard, ...$others)
     {
-        return static::class . ':' . implode(',', [$guard, ...$others]);
+        return static::class.':'.implode(',', [$guard, ...$others]);
     }
 
     /**
@@ -113,11 +113,12 @@ class Authenticate implements AuthenticatesRequests
      */
     protected function redirectTo(Request $request, array $guards)
     {
-        foreach ($guards as $guard) {
+        foreach($guards as $guard) {
             if ($guard == 'admin') {
                 return route('admin.login');
             }
         }
+
         if (static::$redirectToCallback) {
             return call_user_func(static::$redirectToCallback, $request);
         }
